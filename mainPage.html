@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:if="${check.type}==1">Admin Page</title>
+<title th:if="${check.type}==2">Student Page</title>
+<style type="text/css">
+.cent{
+	margin-left: auto;
+	margin-right: auto;
+}
+.txt{
+	text-align: center;
+}
+.registration-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.registration-button:hover {
+  background-color: #2980b9;
+}
+
+.reg {
+	  margin-left: auto;
+	  margin-right: auto;
+	  border-spacing: 50px 25px;
+}
+.mark{
+	background-color: rgba(230, 245, 39, 0.66);
+}
+
+.th {
+	background-color: black;
+	color: white;
+}
+
+.tr:nth-child(even) {
+	background-color: rgb(238, 238, 238);
+}
+
+.table, .td, .th {
+	border-collapse: collapse;
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+	padding: 5px;
+}
+.logout {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.logout:hover {
+  background-color: #c0392b;
+}
+
+.wid{
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	
+	
+	<div th:if="${check.type}==2">
+		<h1>Hello <span th:text="${check.firstName}"></span> <span th:text="${check.lastName}"></span></h1>
+		
+		
+		<h3 class="txt mark">Today's Courses</h3>
+					<table class="cent" border="1">
+					    <thead>
+					        <tr class="tr">
+					            <th class="th">Course Id</th>
+					            <th class="th">Course Name</th>
+					            <th class="th">Time</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <tr class="tr" th:each="t : ${tdy}">
+					            <td class="td" th:text="${t.courseId}"></td>
+					            <td class="td" th:text="${t.courseName}"></td>
+					            <td class="td">
+					            	<th:block th:each="d : ${t.dates}">
+					            		<span th:text="${d.time}"></span>
+					            	</th:block>
+					            </td>
+					        </tr>
+					    </tbody>
+					</table>
+		
+	
+		<table class="reg">
+			<tr>
+				<td>
+					<h3 class="mark">Tomorrow's Courses</h3>
+					<table border="1">
+					    <thead>
+					        <tr class="tr">
+					            <th class="th">Course Id</th>
+					            <th class="th">Course Name</th>
+					            <th class="th">Time</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <tr class="tr" th:each="t : ${tmrw}">
+					            <td class="td" th:text="${t.courseId}"></td>
+					            <td class="td" th:text="${t.courseName}"></td>
+					            <td class="td">
+					            	<th:block th:each="d : ${t.dates}">
+					            		<span th:text="${d.time}"></span>
+					            	</th:block>
+					            </td>
+					        </tr>
+					    </tbody>
+					</table>
+				</td>
+		
+				<td>
+					<h3 class="mark">Yesterday's Courses</h3>
+					<table border="1">
+					    <thead>
+					        <tr class="tr">
+					            <th class="th">Course Id</th>
+					            <th class="th">Course Name</th>
+					            <th class="th">Time</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <tr class="tr" th:each="y : ${yest}">
+					            <td class="td" th:text="${y.courseId}"></td>
+					            <td class="td" th:text="${y.courseName}"></td>
+					            <td class="td">
+					            	<th:block th:each="d : ${y.dates}">
+					            		<span th:text="${d.time}"></span>
+					            	</th:block>
+					            </td>
+					        </tr>
+					    </tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3 class="mark">Completed Courses</h3>
+					<table border="1">
+					    <thead>
+					        <tr class="tr">
+					            <th class="th">Course Id</th>
+					            <th class="th">Course Name</th>
+					            <th class="th">Date</th>
+					            <th class="th">Time</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <tr class="tr" th:each="c : ${com}">
+					            <td class="td" th:text="${c.courseId}"></td>
+					            <td class="td" th:text="${c.courseName}"></td>
+					            <td class="td">
+					            	<th:block th:each="d : ${c.dates}">
+					            		<span th:text="${d.day}"></span>
+					            	</th:block>
+					            </td>
+					            <td class="td">
+					            	<th:block th:each="d : ${c.dates}">
+					            		<span th:text="${d.time}"></span>
+					            	</th:block>
+					            </td>
+					        </tr>
+					    </tbody>
+					</table>
+				</td>
+				<td>
+					<h3 class="mark">Upcoming Courses</h3>
+					<table border="1">
+					    <thead>
+					        <tr class="tr">
+					            <th class="th">Course Id</th>
+					            <th class="th">Course Name</th>
+					            <th class="th">Date</th>
+					            <th class="th">Time</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <tr class="tr" th:each="n : ${next}">
+					            <td class="td" th:text="${n.courseId}"></td>
+					            <td class="td" th:text="${n.courseName}"></td>
+					            <td class="td">
+					            	<th:block th:each="d : ${n.dates}">
+					            		<span th:text="${d.day}"></span>
+					            	</th:block>
+					            </td>
+					            <td class="td">
+					            	<th:block th:each="d : ${n.dates}">
+					            		<span th:text="${d.time}"></span>
+					            	</th:block>
+					            </td>
+					        </tr>
+					    </tbody>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		
+			<a class="registration-button" th:href="@{/register-courses(user=${check.userId})}">Register Courses</a>
+			<br><br>
+		 	<form th:action="@{/login}">
+				<input class="logout" type="submit" value="Logout">
+			</form>
+			
+		
+	</div>
+	
+	<div th:if="${check.type}==1">
+		<h1>Hello <span th:text="${check.firstName}"></span> <span th:text="${check.lastName}"></span></h1>
+		
+		
+		<table class="wid" border="1">
+	    <thead>
+	        <tr class="tr">
+	            <th class="th">User ID</th>
+	            <th class="th">User Name</th>
+	            <th class="th">Registered Courses</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr class="tr" th:each="item : ${data}">
+	            <td class="td" th:text="${item[0]}"></td>
+	            <td class="td" th:text="${item[1] + ' ' + item[2]}"></td>
+	            <td class="td" th:text="${item[3]}"></td>
+	        </tr>
+	    </tbody>
+	</table>
+	<br><br>
+	
+	
+	
+	<form th:action="@{/register-user}">
+		<input type="hidden" name="adminId" th:value="${check.userId}">
+		<input class="registration-button" type="submit" value="Register User">
+	</form>
+	<br>
+		
+	<form th:action="@{/create-course}">
+		<input type="hidden" name="adminId" th:value="${check.userId}">
+		<input class="registration-button" type="submit" value="Add Course">
+	</form>
+	<br>
+		
+	<form th:action="@{/login}">
+		<input class="logout" type="submit" value="Logout">
+	</form>
+	<br>
+		
+		
+		
+		
+	</div>
+	
+</body>
+</html>

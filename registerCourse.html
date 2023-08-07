@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Course Registration</title>
+<style type="text/css">
+.head{
+	text-align: center;
+}
+table {
+	width: 100%;
+	border-bottom: 2px solid black;
+}
+
+th {
+	background-color: black;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: rgb(238, 238, 238);
+}
+
+table, td, th {
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+.info {
+	text-align: center;
+}
+.drop-button {
+	background-color: rgb(255, 34, 58);
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+}
+.drop-button:hover {
+	background-color: tomato;
+}
+
+.back {
+  background-color: rgba(140, 243, 169, 0.85);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back:hover {
+  background-color: rgba(110, 183, 130, 0.85)
+}
+</style>
+</head>
+<body>
+	
+	<h2 class="head">All Courses</h2>
+		<table border="1">
+		    <thead>
+		        <tr>
+		            <th>Course Id</th>
+		            <th>Course Name</th>
+		            <th>Date</th>
+		            <th>Time</th>
+		            <th>Drop</th>
+		        </tr>
+		    </thead>
+		    <tbody class="info">
+		        <tr th:each="c : ${course}">
+		            <td th:text="${c.courseId}"></td>
+		            <td th:text="${c.courseName}"></td>
+		            <td>
+		                <th:block th:each="d : ${c.dates}">
+		                    <span th:text="${d.day}"></span><br/>
+		                </th:block>
+		            </td>
+		            <td>
+		                <th:block th:each="d : ${c.dates}">
+		                    <span th:text="${d.time}"></span><br/>
+		                </th:block>
+		            </td>
+		           <td>
+					    <a class="drop-button" th:href="@{/drop(courseId=${c.courseId}, userId=${user.userId})}">Drop</a>
+					</td>
+				</tr>
+		    </tbody>
+		</table>
+		
+		<br><br><br>
+		
+		<form th:action="@{register-courses}" method="post">
+			<label>Register Available Courses: </label>
+			<select name="courseId">
+				<option th:each="c : ${unreg}" th:text="${c.courseName}" th:value="${c.courseId}"></option>
+			</select>
+			<input type="hidden" name="userId" th:value="${user.userId}">
+			<input type="submit" value="Register">
+		</form>
+		
+		<br><br>
+		<form th:action="@{/mainPage}">
+			<input type="hidden"  name="check" th:value="${studentId}">
+			<input class="back" type="submit" value="Go back">
+		</form>
+		
+</body>
+</html>

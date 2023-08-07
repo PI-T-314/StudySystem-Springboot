@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration</title>
+<style type="text/css">
+.reg {
+	  margin-left: auto;
+	  margin-right: auto;
+}
+.head{
+	text-align: center;
+}
+.back {
+  background-color: rgba(140, 243, 169, 0.85);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back:hover {
+  background-color: rgba(110, 183, 130, 0.85)
+}
+</style>
+</head>
+<body>
+	
+	<h2 class="head">Register a new User</h2>
+	
+	<form th:action="@{/register-complete}" th:object="${user}" method="post">
+		<table class="reg">
+			<tr>
+				<td><label>Enter ID: </label></td>
+				<td><input type="number" th:field="*{userId}" required></td>
+			</tr>
+			<tr>
+				<td><label>Enter First Name: </label></td>
+				<td><input type="text" th:field="*{firstName}" required></td>
+			</tr>
+			<tr>
+				<td><label>Enter Last Name: </label></td>
+				<td><input type="text" th:field="*{lastName}" required></td>
+			</tr>
+			<tr>
+				<td><label>Enter Email: </label></td>
+				<td><input type="text" th:field="*{email}" required></td>
+			</tr>
+			<tr>
+				<td><label>Enter Password: </label></td>
+				<td><input type="password" th:field="*{password}" required></td>
+			</tr>
+			<tr>
+				<td><label>Select Type: </label></td>
+				<td><select th:field="*{type}" required>
+					<option th:value=1 >1</option>
+					<option th:value=2 >2</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="adminId" th:value="${adminId}"></td>
+				<td><input type="submit" value="Register"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<form th:action="@{/mainPage}">
+		<input type="hidden"  name="check" th:value="${adminId}">
+		<input class="back" type="submit" value="Go back">
+	</form>
+	
+	
+</body>
+</html>

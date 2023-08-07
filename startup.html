@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/startup.css}" />
+    <title>Startup Page</title>
+    <style type="text/css">
+    	/* Reset some default styles */
+		body, h1, h2, h3, p {
+		    margin: 0;
+		    padding: 0;
+		}
+		
+		/* Task bar styles */
+		.task-bar {
+		    background-color: rgba(66, 2, 91, 0.93);
+		    color: white;
+		    padding: 10px;
+		    text-align: right;
+		}
+		
+		.task-bar a {
+		    color: white;
+		    text-decoration: none;
+		}
+		
+		/* Content styles */
+		.content {
+		    text-align: center;
+		    margin-top: 50px;
+		}
+		
+		.content img {
+		    max-width: 45%;
+		    height: auto;
+		    display: block;
+		    margin: 0 auto;
+		}
+		
+		.content p {
+		    font-size: 18px;
+		    margin-top: 20px;
+		}
+    	body{
+			background-color: rgba(224, 195, 255, 0.68);
+		}
+    </style>
+</head>
+<body>
+    <div class="task-bar">
+        <a href="/login">Login</a>
+    </div>
+    <div class="content">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Startup Image">
+        
+        
+        <p>This is where students have a future, also our System is capable of showing you <br>the course you are taking, you took, and you could take.<br>
+        	In addition, to being able to take and drop courses when wanted!<br>
+        	Also our admins have all the freedom to add students,<br> other admins, and courses to our system.
+         </p>
+        
+        
+    </div>
+</body>
+</html>

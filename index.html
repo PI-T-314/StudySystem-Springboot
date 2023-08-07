@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<style type="text/css">
+.reg {
+	  margin-left: auto;
+	  margin-right: auto;
+}
+.head{
+	text-align: center;
+}
+.login {
+  background-color: #3498db;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.login:hover {
+  background-color: #2980b9;
+}
+.back {
+  background-color: rgba(27, 229, 134, 0.93);
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back:hover {
+  background-color: rgba(22, 178, 105, 0.93);
+}
+body{
+	background-color: rgba(224, 195, 255, 0.68);
+}
+</style>
+</head>
+<body>
+
+	<br><br><br><br><br><br><br><br><br>
+	
+	<h1 class="head">Login</h1>
+	<form th:action="@{/login}" method="post" th:object="${user}">
+		<table class="reg">
+			<tr>
+				<td><label>Enter Email: </label></td>
+				<td><input type="text" th:field="*{email}" required></td>
+			</tr>
+			<tr>
+				<td><label>Enter Password: </label></td>
+				<td><input type="password" th:field="*{password}" required></td>
+			</tr>
+			<tr>
+			<td></td>
+			<td><input class="login" type="submit" value="Login"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a class="back" href="/">Go Back</a></td>
+			</tr>
+		</table>
+	</form>
+	
+	
+</body>
+</html>

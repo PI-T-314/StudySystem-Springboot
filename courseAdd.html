@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Course Adding Page</title>
+
+<style type="text/css">
+.reg {
+	  margin-left: auto;
+	  margin-right: auto;
+}
+.head{
+	text-align: center;
+}
+.back {
+  background-color: rgba(140, 243, 169, 0.85);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back:hover {
+  background-color: rgba(110, 183, 130, 0.85)
+}
+</style>
+</head>
+<body>
+	
+	
+	<h2 class="head">Register a new Course</h2>
+	
+	<form th:action="@{/courseAdd-Complete}" th:object="${course}" method="post">
+		<table class="reg">
+			<tr>
+		    	<td><label>Enter Course ID: </label>
+		    	<td><input type="number" th:field="*{courseId}" required><br>
+		    </tr>
+		    <tr>
+		 		<td><label>Enter Course Name: </label>
+		    	<td><input type="text" th:field="*{courseName}" required><br>
+		    </tr>
+		    <tr>
+		    	<td><label>Enter Date ID: </label>
+		    	<td><input type="number" th:field="${date.dateId}" required><br>
+		    </tr>
+		    <tr>
+		    	<td><label>Enter Day:</label>
+				<td><input type="date" th:field="${date.day}" th:value="${#dates.format(date.day, 'yyyy-MM-dd')}" required><br>
+			</tr>
+		    <tr>
+		    	<td><label>Enter Time:</label>
+		    	<td><input type="time" th:field="${date.time}" required> 
+		    </tr>
+		    <tr>
+		    	<td><input type="hidden" name="adminId" th:value="${adminId}" required>
+		    	<td><input type="submit" value="Register">
+		    </tr>
+		</table>
+	</form>
+	
+	<form th:action="@{/mainPage}">
+		<input type="hidden"  name="check" th:value="${adminId}">
+		<input class="back" type="submit" value="Go back">
+		
+	</form>
+
+
+	
+	
+</body>
+</html>
